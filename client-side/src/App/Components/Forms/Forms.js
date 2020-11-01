@@ -43,13 +43,30 @@ class Inscription extends React.Component {
   }
 
   nextButtonOnClick = () => {
-    if(this.state.step === 3){
+    let flag = false;
+    switch (this.state.step) {
+      case 1:
+        flag = (CheckValues('text', this.state.firstName) &&
+          CheckValues('text', this.state.lastName)&& this.state.gender)
+        break;
+      case 2:
+        flag = (this.state.country)
+        break;
+      case 3:
+        flag = (CheckValues('email', this.state.email) &&
+          CheckValues('phone', this.state.phone)&& this.state.tcu)
+        break;
+      default:
+        break;
+    }
+    if (flag) {
+    if (this.state.step === 3) {
       this.sendData()
     }
-    let tmp = this.state.step +=1;
-    this.setState({step: tmp})
+      let tmp = this.state.step += 1;
+      this.setState({ step: tmp })
+    }
   }
-
   checkStep(step){
     if(step === this.state.step)
       return true
@@ -191,6 +208,9 @@ class Inscription extends React.Component {
             <input name="tcuAccept" type="checkbox" checked={this.state.tcu} onChange={(event)=>{this.acceptTCU()}}/>
           </p>
         </div>
+        <p hidden={!this.checkStep(4)}>
+        <p><img src="https://i.ibb.co/941NPWh/image.png" alt="" /></p>
+        Thanks you for your interest, we will call you back soon !</p>
         <div className="Buttons">
           <button id="button-prev"
                   className={"button-prev"}
