@@ -46,15 +46,15 @@ class Inscription extends React.Component {
     let flag = false;
     switch (this.state.step) {
       case 1:
-        flag = (CheckValues('text', this.state.firstName) &&
-          CheckValues('text', this.state.lastName)&& this.state.gender)
+        flag = (CheckValues('text', this.state.firstName,"First Name") &&
+          CheckValues('text', this.state.lastName, "Last Name")&& CheckValues('bool',this.state.gender,"Gender"))
         break;
       case 2:
         flag = (this.state.country)
         break;
       case 3:
-        flag = (CheckValues('email', this.state.email) &&
-          CheckValues('phone', this.state.phone)&& this.state.tcu)
+        flag = (CheckValues('email', this.state.email,"email") &&
+          CheckValues('phone', this.state.phone,"phone")&& CheckValues('bool',this.state.tcu,"TCU"))
         break;
       default:
         break;
