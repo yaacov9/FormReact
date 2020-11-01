@@ -1,7 +1,14 @@
 const express = require('express');
-
 const app = express();
+const cors = require('cors');
 
+// Solve CORS problems
+app.use(cors({credentials: true, origin: true}));
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+
+// Request GET for the countries
 app.get('/countries', (req, res) => {
 
   const beg_flag_url = "https://www.countryflags.io/";
@@ -10,41 +17,42 @@ app.get('/countries', (req, res) => {
   const values = [
     {
       flag_url: beg_flag_url + "fr" + end_flag_url,
-      key: 'FR',
-      name: "France",
+      value: 'FR',
+      label: "France",
       identifier: '+33'
     },
     {
       flag_url: beg_flag_url + "us" + end_flag_url,
-      key: 'US',
-      name: "USA",
+      value: 'US',
+      label: "USA",
       identifier: '+1'
     },
     {
       flag_url: beg_flag_url + "il" + end_flag_url,
-      key: "IL",
-      name: "Israel",
+      value: "IL",
+      label: "Israel",
       identifier: '+972'
     },
     {
       flag_url: beg_flag_url + "cn" + end_flag_url,
-      key: 'CN',
-      name: "China",
+      value: 'CN',
+      label: "China",
       identifier: '+86',
     },
     {
       flag_url: beg_flag_url + "gb"+ end_flag_url,
-      key: "GB",
-      name: "United Kingdom",
+      value: "GB",
+      label: "United Kingdom",
       identifier: '+44',
     }
   ];
   res.send(values);
 });
 
+// POST request to submit a form
 app.post('/submit', (req, res) => {
-  var data = req.body;
-  console.log(data);
+  console.log(req.body,"efGTHYJ",req.data)
+  const data = req.body;
 })
 
 const port = 8080;
