@@ -11,6 +11,8 @@ The Client app consists on a 3 steps submit-form which connect to the Server app
 ## Server side
 The server works on node.js and Express.js.
 
+It uses ESLint and Prettier as a linter which configured on AirBnB convention.
+
 The server run on port 3000.
 
 The server's routes are the following:
