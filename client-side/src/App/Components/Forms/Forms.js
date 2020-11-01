@@ -46,8 +46,13 @@ class Inscription extends React.Component {
     let flag = false;
     switch (this.state.step) {
       case 1:
+        if(this.state.isBusiness){
+          flag = (CheckValues('text', this.state.firstName,"First Name") &&
+            CheckValues('text', this.state.lastName, "Last Name")&& CheckValues('bool',this.state.gender,"Gender"))
+          && CheckValues('text',this.state.companyName,"Company Name")
+        }else{
         flag = (CheckValues('text', this.state.firstName,"First Name") &&
-          CheckValues('text', this.state.lastName, "Last Name")&& CheckValues('bool',this.state.gender,"Gender"))
+          CheckValues('text', this.state.lastName, "Last Name")&& CheckValues('bool',this.state.gender,"Gender"))}
         break;
       case 2:
         flag = (this.state.country)
@@ -112,10 +117,20 @@ class Inscription extends React.Component {
   }
 
   sendData() {
-    console.log("jefgrth")
-    /*if (!this.verify()) {
-      return null;
-    }*/
+    if(this.state.isBusiness){
+      Axios.post(globalVar.url + "/submit",
+        {gender: this.state.gender,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          country: this.state.country,
+          city: this.state.city,
+          email: this.state.email,
+          phone: this.state.phone,
+          tcu: this.state.tcu,
+          companyName: this.state.companyName
+        },{withCredentials:true})
+    }
+    else{
     Axios.post(globalVar.url + "/submit",
       {gender: this.state.gender,
             firstName: this.state.firstName,
@@ -126,7 +141,7 @@ class Inscription extends React.Component {
             phone: this.state.phone,
             tcu: this.state.tcu
             },{withCredentials:true})
-    }
+    }}
 
   render() {
     const nextButtonContent = (this.isPost()) ? "Submit" : "Next";
@@ -157,7 +172,7 @@ class Inscription extends React.Component {
           </div>
 
         </div>
-        <Line percent={percent} strokeWidth="1" strokeColor={color} />
+        <Line percent={percent} strokeWidth="1" strokeColor={color} width={'85%'} />
         <div className="nav" >
           <p
             hidden={!this.checkStep(1)}
