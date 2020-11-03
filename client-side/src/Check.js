@@ -9,7 +9,7 @@ const CheckValues = (type, value,caller) => {
     case "email":
       let t = (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value);
       if (t) return true;
-      return alert(caller + ' is not correct');
+      return alert(caller + ' is not correct please');
 
     case "bool":
       if (!value) return alert(caller + ' is not correct')
