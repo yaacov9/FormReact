@@ -1,6 +1,8 @@
 # 3 Steps Forms
 __Exercise for BALink company__
 
+This project is a 3 steps submit-form. It is currently hosted at [here](http://balinkreact.herokuapp.com/).
+
 ## Abstract
 This repository store 2 related projects
 1. Server Application
